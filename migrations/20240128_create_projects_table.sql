@@ -1,0 +1,13 @@
+CREATE TABLE IF NOT EXISTS projects (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    project_id VARCHAR(255) NOT NULL UNIQUE,
+    project_name VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+-- Add project columns to expenses table
+ALTER TABLE expenses 
+ADD COLUMN project_id VARCHAR(255),
+ADD COLUMN project_name VARCHAR(255),
+ADD CONSTRAINT fk_project_id FOREIGN KEY (project_id) REFERENCES projects(project_id) ON DELETE SET NULL;

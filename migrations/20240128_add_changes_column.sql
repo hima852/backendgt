@@ -1,0 +1,2 @@
+ALTER TABLE expense_history
+ADD COLUMN changes JSON DEFAULT NULL;
